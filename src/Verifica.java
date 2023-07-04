@@ -6,7 +6,7 @@ public class Verifica {
         double valor = 0.0;
 
         while (true) {
-            
+
             String valorInformado = JOptionPane.showInputDialog("Escolha uma valorInformado");
 
             if (valorInformado != null && valorInformado.matches("\\d+")) {
