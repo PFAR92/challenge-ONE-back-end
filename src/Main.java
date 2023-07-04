@@ -7,13 +7,21 @@ public class Main {
         String optionTwo = "Conversor de temperatura";
         String[] options = {optionOne, optionTwo};
 
-        String selectedOption = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Conversor",
+
+        String escolha = "";
+        String opcoes = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Conversor",
                 JOptionPane.PLAIN_MESSAGE, null, options, optionOne);
 
-        if (selectedOption.equals(optionOne)){
-            ConversorMoedas conversorMoedas = new ConversorMoedas();
+        double valor = Verifica.input();
+
+        if (opcoes.equals(optionOne)) {
+            escolha = ConversorMoedas.conversao(valor);
+        } else if (opcoes.equals(optionTwo)) {
+            escolha = ConversorTemperatura.conversao(valor);
         }
 
-
+        JOptionPane.showMessageDialog(null, escolha,
+                "Conversor de Moedas", JOptionPane.INFORMATION_MESSAGE);
     }
+
 }
