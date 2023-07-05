@@ -3,25 +3,32 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        String optionOne = "Conversor de moedas";
-        String optionTwo = "Conversor de temperatura";
-        String[] options = {optionOne, optionTwo};
+        String[] menu = {"Conversor de moedas", "Conversor de temperatura"};
 
+        while (true) {
+            String opcoes = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Conversor",
+                    JOptionPane.PLAIN_MESSAGE, null, menu, menu[0]);
 
-        String escolha = "";
-        String opcoes = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Conversor",
-                JOptionPane.PLAIN_MESSAGE, null, options, optionOne);
+            if (opcoes == null) {
+                Verifica.encerra();
+            } else {
+                double valor = Verifica.input();
+                String resultado = EscolhaConversor.conversorEscolhido(opcoes, valor);
+                JOptionPane.showMessageDialog(null, resultado,
+                        opcoes, JOptionPane.INFORMATION_MESSAGE);
+            }
 
-        double valor = Verifica.input();
+            int escolha = JOptionPane.showConfirmDialog(null, "Deseja continuar?",
+                    "Conversor", JOptionPane.YES_NO_CANCEL_OPTION);
 
-        if (opcoes.equals(optionOne)) {
-            escolha = ConversorMoedas.conversao(valor);
-        } else if (opcoes.equals(optionTwo)) {
-            escolha = ConversorTemperatura.conversao(valor);
+            if (escolha == JOptionPane.NO_OPTION) {
+                Verifica.encerra();
+            } else if (escolha == JOptionPane.CANCEL_OPTION) {
+                JOptionPane.showMessageDialog(null, "Programa concluído",
+                        "Conversor", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
         }
-
-        JOptionPane.showMessageDialog(null, escolha,
-                "Conversor de Moedas", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }
