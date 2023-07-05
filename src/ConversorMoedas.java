@@ -4,7 +4,7 @@ public class ConversorMoedas {
 
     public static String conversao(double valor) {
 
-        String resultado;
+        String resultado = "";
 
 
         String[] moedas = {"De Reais a Dólares", "De Reais a Euros", "De Reais a Libras", "De Reais a Ienes",
@@ -14,9 +14,10 @@ public class ConversorMoedas {
 
         String opcoes = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:",
                 "Conversor de moedas", JOptionPane.PLAIN_MESSAGE, null, moedas, moedas[0]);
-
+        
 
         switch (opcoes) {
+            case null -> Verifica.encerra();
             case "De Reais a Dólares" -> resultado = "US$" + valor * 0.21;
             case "De Reais a Euros" -> resultado = "€ " + valor * 0.19;
             case "De Reais a Libras" -> resultado = "£ " + valor * 0.16;
@@ -27,7 +28,7 @@ public class ConversorMoedas {
             case "De Libras a Reais" -> resultado = "R$" + valor * 6.16;
             case "De Ienes a Reais" -> resultado = "R$" + valor * 0.034;
             case "De Won Coreano a Reais" -> resultado = "R$" + valor * 0.0037;
-            default -> resultado = "opção invalida";
+            default -> throw new IllegalStateException("Valor inesperado: " + opcoes);
         }
         return resultado;
     }

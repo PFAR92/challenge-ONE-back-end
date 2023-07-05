@@ -8,16 +8,26 @@ public class Verifica {
         while (true) {
 
             String valorInformado = JOptionPane.showInputDialog("Escolha uma valorInformado");
-
-            if (valorInformado != null && valorInformado.matches("\\d+")) {
-                valor = Double.parseDouble(valorInformado);
-                break;
+            if (valorInformado != null) {
+                if (!valorInformado.isEmpty() && valorInformado.matches("\\d+")) {
+                    valor = Double.parseDouble(valorInformado);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Valor inválido. Digite apenas números.",
+                            "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Valor inválido. Digite apenas números.",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
+                encerra();
             }
         }
 
         return valor;
     }
+
+    public static void encerra (){
+        JOptionPane.showMessageDialog(null, "Programa finalizado.",
+                "Informação", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
+    }
+
 }
